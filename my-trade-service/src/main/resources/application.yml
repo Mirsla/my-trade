@@ -1,0 +1,86 @@
+app:
+  id: my-trade-service
+#apollo:
+#  bootstrap:
+#    enabled: true
+spring:
+  application:
+    name: my-trade-service
+#  pid:
+#    file: ${spring.application.name}.pid
+#    fail-on-write-error: true
+#  cloud:
+#    consul:
+#      discovery:
+#        prefer-ip-address: true
+#        instance-id: ${spring.application.name}-${spring.cloud.client.ip-address}-${server.port}
+#        health-check-interval: 3s
+  jackson:
+    time-zone: GMT+8
+  datasource:
+    name: trade-datasource
+    driver-class-name: com.mysql.jdbc.Driver
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+    minIdle: 1
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: select 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    maxOpenPreparedStatements: 20
+    removeAbandoned: true
+    removeAbandonedTimeout: 10
+    logAbandoned: true
+#  dubbo:
+#    application:
+#      id: ${spring.application.name}
+#      name: ${spring.application.name}
+#    registry:
+#      packageName: com.mk.trade
+#    server: false
+#    protocol:
+#      name: dubbo
+#  sleuth:
+#    sampler:
+#      probability: 1.0
+
+mybatis:
+  mapperLocations: classpath*:mybatis/*.xml
+
+#management:
+#  health:
+#    mail:
+#      enabled: false
+#  endpoint:
+#    health:
+#      show-details: always
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  metrics:
+#    export:
+#      simple:
+#        enabled: false
+
+logging:
+  path: log
+
+#feign:
+#  hystrix:
+#    enabled: true
+
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMilliseconds: 10000
