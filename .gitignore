@@ -1,3 +1,10 @@
 .idea/
 *.iml
 *.class
+my-trade-api/target/
+my-trade-business/target/
+my-trade-canal/target/
+my-trade-common/target/
+my-trade-dao/target/
+my-trade-entity/target/
+my-trade-service/target/

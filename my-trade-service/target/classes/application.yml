@@ -1,5 +1,5 @@
-app:
-  id: my-trade-service
+#app:
+#  id: my-trade-service
 #apollo:
 #  bootstrap:
 #    enabled: true
@@ -15,29 +15,36 @@ spring:
 #        prefer-ip-address: true
 #        instance-id: ${spring.application.name}-${spring.cloud.client.ip-address}-${server.port}
 #        health-check-interval: 3s
-  jackson:
-    time-zone: GMT+8
+#  jackson:
+#    time-zone: GMT+8
+#db配置  start
   datasource:
-    name: trade-datasource
-    driver-class-name: com.mysql.jdbc.Driver
-    # 使用druid数据源
+    url: jdbc:mysql://CHDLXDB06:3306/auth?useSSL=false
+    username: mkbiz
+    password: MaikeN2@41811
+    driverClassName: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
-    filters: stat
+    # 连接池扩展配置
+    initialSize: 5
+    minIdle: 5
     maxActive: 20
-    initialSize: 1
-    maxWait: 60000
-    minIdle: 1
+    # 配置获取连接等待超时的时间
+    maxWait: 45000
+    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
     timeBetweenEvictionRunsMillis: 60000
+    # 配置一个连接在池中最小生存的时间，单位是毫秒
     minEvictableIdleTimeMillis: 300000
-    validationQuery: select 'x'
+    validationQuery: SELECT 1 FROM DUAL
     testWhileIdle: true
     testOnBorrow: false
     testOnReturn: false
+    # 打开PSCache，并且指定每个连接上PSCache的大小
     poolPreparedStatements: true
-    maxOpenPreparedStatements: 20
-    removeAbandoned: true
-    removeAbandonedTimeout: 10
-    logAbandoned: true
+    maxPoolPreparedStatementPerConnectionSize: 20
+    # 配置监控统计拦截的filters
+    filters: wall,stat
+    # mergeSql 统计sql，打开慢sql统计
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=20
 #  dubbo:
 #    application:
 #      id: ${spring.application.name}
@@ -51,8 +58,8 @@ spring:
 #    sampler:
 #      probability: 1.0
 
-mybatis:
-  mapperLocations: classpath*:mybatis/*.xml
+#mybatis:
+#  mapperLocations: classpath*:mybatis/*.xml
 
 #management:
 #  health:
@@ -70,8 +77,8 @@ mybatis:
 #      simple:
 #        enabled: false
 
-logging:
-  path: log
+#logging:
+#  path: log
 
 #feign:
 #  hystrix:
@@ -84,3 +91,5 @@ logging:
 #        isolation:
 #          thread:
 #            timeoutInMilliseconds: 10000
+
+
