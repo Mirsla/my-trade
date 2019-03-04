@@ -3,6 +3,8 @@
 #apollo:
 #  bootstrap:
 #    enabled: true
+server:
+  port: 7000
 spring:
   application:
     name: my-trade-service
@@ -58,8 +60,8 @@ spring:
 #    sampler:
 #      probability: 1.0
 
-#mybatis:
-#  mapperLocations: classpath*:mybatis/*.xml
+mybatis:
+  mapperLocations: classpath*:mybatis/*.xml
 
 #management:
 #  health:

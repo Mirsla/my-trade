@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mirsla.trade.dao.ConsumersMapper" >
+    <resultMap id="BaseResultMap" type="com.mirsla.trade.entity.Consumers" >
+        <id column="c_id" property="cId" jdbcType="INTEGER" />
+        <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+        <result column="u_id" property="uId" jdbcType="INTEGER" />
+        <result column="consumer_type" property="consumerType" jdbcType="VARCHAR" />
+        <result column="mkey" property="mkey" jdbcType="VARCHAR" />
+        <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
+        <result column="created_when" property="createdWhen" jdbcType="TIMESTAMP" />
+        <result column="modify_by" property="modifyBy" jdbcType="VARCHAR" />
+        <result column="modify_when" property="modifyWhen" jdbcType="TIMESTAMP" />
+        <result column="cellphone_no" property="cellphoneNo" jdbcType="VARCHAR" />
+        <result column="wx_account" property="wxAccount" jdbcType="VARCHAR" />
+        <result column="head_img" property="headImg" jdbcType="VARCHAR" />
+        <result column="open_id" property="openId" jdbcType="VARCHAR" />
+        <result column="wxa_open_id" property="wxaOpenId" jdbcType="VARCHAR" />
+        <result column="nick" property="nick" jdbcType="VARCHAR" />
+        <result column="obtained_method" property="obtainedMethod" jdbcType="VARCHAR" />
+        <result column="come_from" property="comeFrom" jdbcType="VARCHAR" />
+        <result column="come_from_ident" property="comeFromIdent" jdbcType="VARCHAR" />
+        <result column="valid_qrcode" property="validQrcode" jdbcType="BIT" />
+        <result column="valid_qrcode_time" property="validQrcodeTime" jdbcType="TIMESTAMP" />
+        <result column="comments" property="comments" jdbcType="VARCHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    c_id, shop_id, u_id, consumer_type, mkey, created_by, created_when, modify_by, modify_when,
+    cellphone_no, wx_account, head_img, open_id, wxa_open_id, nick, obtained_method,
+    come_from, come_from_ident, valid_qrcode, valid_qrcode_time, comments
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from crm.consumers
+        where c_id = #{cId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from crm.consumers
+    where c_id = #{cId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" keyProperty="cId" parameterType="com.mirsla.trade.entity.Consumers" useGeneratedKeys="true">
+    insert into crm.consumers (c_id, shop_id, u_id,
+      consumer_type, mkey, created_by,
+      created_when, modify_by, modify_when,
+      cellphone_no, wx_account, head_img,
+      open_id, wxa_open_id, nick,
+      obtained_method, come_from, come_from_ident,
+      valid_qrcode, valid_qrcode_time, comments
+      )
+    values (#{cId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{uId,jdbcType=INTEGER},
+      #{consumerType,jdbcType=VARCHAR}, #{mkey,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR},
+      #{createdWhen,jdbcType=TIMESTAMP}, #{modifyBy,jdbcType=VARCHAR}, #{modifyWhen,jdbcType=TIMESTAMP},
+      #{cellphoneNo,jdbcType=VARCHAR}, #{wxAccount,jdbcType=VARCHAR}, #{headImg,jdbcType=VARCHAR},
+      #{openId,jdbcType=VARCHAR}, #{wxaOpenId,jdbcType=VARCHAR}, #{nick,jdbcType=VARCHAR},
+      #{obtainedMethod,jdbcType=VARCHAR}, #{comeFrom,jdbcType=VARCHAR}, #{comeFromIdent,jdbcType=VARCHAR},
+      #{validQrcode,jdbcType=BIT}, #{validQrcodeTime,jdbcType=TIMESTAMP}, #{comments,jdbcType=VARCHAR}
+      )
+  </insert>
+    <insert id="insertSelective" keyProperty="cId" parameterType="com.mirsla.trade.entity.Consumers" useGeneratedKeys="true">
+        insert into crm.consumers
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="cId != null" >
+                c_id,
+            </if>
+            <if test="shopId != null" >
+                shop_id,
+            </if>
+            <if test="uId != null" >
+                u_id,
+            </if>
+            <if test="consumerType != null" >
+                consumer_type,
+            </if>
+            <if test="mkey != null" >
+                mkey,
+            </if>
+            <if test="createdBy != null" >
+                created_by,
+            </if>
+            <if test="createdWhen != null" >
+                created_when,
+            </if>
+            <if test="modifyBy != null" >
+                modify_by,
+            </if>
+            <if test="modifyWhen != null" >
+                modify_when,
+            </if>
+            <if test="cellphoneNo != null" >
+                cellphone_no,
+            </if>
+            <if test="wxAccount != null" >
+                wx_account,
+            </if>
+            <if test="headImg != null" >
+                head_img,
+            </if>
+            <if test="openId != null" >
+                open_id,
+            </if>
+            <if test="wxaOpenId != null" >
+                wxa_open_id,
+            </if>
+            <if test="nick != null" >
+                nick,
+            </if>
+            <if test="obtainedMethod != null" >
+                obtained_method,
+            </if>
+            <if test="comeFrom != null" >
+                come_from,
+            </if>
+            <if test="comeFromIdent != null" >
+                come_from_ident,
+            </if>
+            <if test="validQrcode != null" >
+                valid_qrcode,
+            </if>
+            <if test="validQrcodeTime != null" >
+                valid_qrcode_time,
+            </if>
+            <if test="comments != null" >
+                comments,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="cId != null" >
+                #{cId,jdbcType=INTEGER},
+            </if>
+            <if test="shopId != null" >
+                #{shopId,jdbcType=INTEGER},
+            </if>
+            <if test="uId != null" >
+                #{uId,jdbcType=INTEGER},
+            </if>
+            <if test="consumerType != null" >
+                #{consumerType,jdbcType=VARCHAR},
+            </if>
+            <if test="mkey != null" >
+                #{mkey,jdbcType=VARCHAR},
+            </if>
+            <if test="createdBy != null" >
+                #{createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createdWhen != null" >
+                #{createdWhen,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyBy != null" >
+                #{modifyBy,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyWhen != null" >
+                #{modifyWhen,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cellphoneNo != null" >
+                #{cellphoneNo,jdbcType=VARCHAR},
+            </if>
+            <if test="wxAccount != null" >
+                #{wxAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="headImg != null" >
+                #{headImg,jdbcType=VARCHAR},
+            </if>
+            <if test="openId != null" >
+                #{openId,jdbcType=VARCHAR},
+            </if>
+            <if test="wxaOpenId != null" >
+                #{wxaOpenId,jdbcType=VARCHAR},
+            </if>
+            <if test="nick != null" >
+                #{nick,jdbcType=VARCHAR},
+            </if>
+            <if test="obtainedMethod != null" >
+                #{obtainedMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="comeFrom != null" >
+                #{comeFrom,jdbcType=VARCHAR},
+            </if>
+            <if test="comeFromIdent != null" >
+                #{comeFromIdent,jdbcType=VARCHAR},
+            </if>
+            <if test="validQrcode != null" >
+                #{validQrcode,jdbcType=BIT},
+            </if>
+            <if test="validQrcodeTime != null" >
+                #{validQrcodeTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="comments != null" >
+                #{comments,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.mirsla.trade.entity.Consumers" >
+        update crm.consumers
+        <set >
+            <if test="shopId != null" >
+                shop_id = #{shopId,jdbcType=INTEGER},
+            </if>
+            <if test="uId != null" >
+                u_id = #{uId,jdbcType=INTEGER},
+            </if>
+            <if test="consumerType != null" >
+                consumer_type = #{consumerType,jdbcType=VARCHAR},
+            </if>
+            <if test="mkey != null" >
+                mkey = #{mkey,jdbcType=VARCHAR},
+            </if>
+            <if test="createdBy != null" >
+                created_by = #{createdBy,jdbcType=VARCHAR},
+            </if>
+            <if test="createdWhen != null" >
+                created_when = #{createdWhen,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modifyBy != null" >
+                modify_by = #{modifyBy,jdbcType=VARCHAR},
+            </if>
+            <if test="modifyWhen != null" >
+                modify_when = #{modifyWhen,jdbcType=TIMESTAMP},
+            </if>
+            <if test="cellphoneNo != null" >
+                cellphone_no = #{cellphoneNo,jdbcType=VARCHAR},
+            </if>
+            <if test="wxAccount != null" >
+                wx_account = #{wxAccount,jdbcType=VARCHAR},
+            </if>
+            <if test="headImg != null" >
+                head_img = #{headImg,jdbcType=VARCHAR},
+            </if>
+            <if test="openId != null" >
+                open_id = #{openId,jdbcType=VARCHAR},
+            </if>
+            <if test="wxaOpenId != null" >
+                wxa_open_id = #{wxaOpenId,jdbcType=VARCHAR},
+            </if>
+            <if test="nick != null" >
+                nick = #{nick,jdbcType=VARCHAR},
+            </if>
+            <if test="obtainedMethod != null" >
+                obtained_method = #{obtainedMethod,jdbcType=VARCHAR},
+            </if>
+            <if test="comeFrom != null" >
+                come_from = #{comeFrom,jdbcType=VARCHAR},
+            </if>
+            <if test="comeFromIdent != null" >
+                come_from_ident = #{comeFromIdent,jdbcType=VARCHAR},
+            </if>
+            <if test="validQrcode != null" >
+                valid_qrcode = #{validQrcode,jdbcType=BIT},
+            </if>
+            <if test="validQrcodeTime != null" >
+                valid_qrcode_time = #{validQrcodeTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="comments != null" >
+                comments = #{comments,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where c_id = #{cId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.mirsla.trade.entity.Consumers" >
+    update crm.consumers
+    set shop_id = #{shopId,jdbcType=INTEGER},
+      u_id = #{uId,jdbcType=INTEGER},
+      consumer_type = #{consumerType,jdbcType=VARCHAR},
+      mkey = #{mkey,jdbcType=VARCHAR},
+      created_by = #{createdBy,jdbcType=VARCHAR},
+      created_when = #{createdWhen,jdbcType=TIMESTAMP},
+      modify_by = #{modifyBy,jdbcType=VARCHAR},
+      modify_when = #{modifyWhen,jdbcType=TIMESTAMP},
+      cellphone_no = #{cellphoneNo,jdbcType=VARCHAR},
+      wx_account = #{wxAccount,jdbcType=VARCHAR},
+      head_img = #{headImg,jdbcType=VARCHAR},
+      open_id = #{openId,jdbcType=VARCHAR},
+      wxa_open_id = #{wxaOpenId,jdbcType=VARCHAR},
+      nick = #{nick,jdbcType=VARCHAR},
+      obtained_method = #{obtainedMethod,jdbcType=VARCHAR},
+      come_from = #{comeFrom,jdbcType=VARCHAR},
+      come_from_ident = #{comeFromIdent,jdbcType=VARCHAR},
+      valid_qrcode = #{validQrcode,jdbcType=BIT},
+      valid_qrcode_time = #{validQrcodeTime,jdbcType=TIMESTAMP},
+      comments = #{comments,jdbcType=VARCHAR}
+    where c_id = #{cId,jdbcType=INTEGER}
+  </update>
+</mapper>
